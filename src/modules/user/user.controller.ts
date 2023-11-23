@@ -132,6 +132,24 @@ const createAnOrder = async (req: Request, res: Response) => {
     }
 }
 
+const getAllOrders = async (req: Request, res: Response) => {
+    try {
+        const { userId } = req.params;
+        const result = await userServices.getAllOrdersFromUserDB(Number(userId))
+        res.status(200).json({
+            success: true,
+            message: "Get All Order successfully!",
+            data: result
+        });
+    } catch (error) {
+        res.status(404).json({
+            success: false,
+            message: "No Order this User",
+            error: error
+        })
+    }
+}
+
 
 export const UserController = {
     createUser,
@@ -139,5 +157,6 @@ export const UserController = {
     getSingleUser,
     updateUserInfo,
     deleteSingleUser,
-    createAnOrder
+    createAnOrder,
+    getAllOrders
 }

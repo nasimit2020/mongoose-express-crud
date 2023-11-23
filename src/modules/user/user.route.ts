@@ -9,6 +9,7 @@ router.get('/:userId', UserController.getSingleUser);
 router.put('/:userId', UserController.updateUserInfo);
 router.delete('/:userId', UserController.deleteSingleUser);
 router.put('/:userId/orders', UserController.createAnOrder);
+router.get('/:userId/orders', UserController.getAllOrders);
 
 
 

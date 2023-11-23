@@ -32,11 +32,18 @@ const addOrdersToUser = async (userId: number, order: TOrder) => {
     return result;
 }
 
+const getAllOrdersFromUserDB = async (userId: number) => {
+    const result = await User.findOne({ userId });
+    const orders = result?.orders;
+    return orders;
+}
+
 export const userServices = {
     createUserIntoDB,
     getAllUsersFromDB,
     getSingleUserFromDB,
     updateUserToDB,
     deleteUserFromDB,
-    addOrdersToUser
+    addOrdersToUser,
+    getAllOrdersFromUserDB
 }
