@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { userServices } from "./user.servcie";
+import { userServices } from "./user.service";
 
 
 const createUser = async (req: Request, res: Response) => {
@@ -45,8 +45,31 @@ const getAllUsers = async (req: Request, res: Response) => {
     }
 }
 
+const getSingleUser = async (req: Request, res: Response) => {
+    try {
+        const { userId } = req.params;
+        const result = await userServices.getSingleUserFromDB(Number(userId));
+
+        res.status(200).json({
+            success: true,
+            message: "Single User get successfully!",
+            data: result
+        });
+    } catch (error) {
+        res.status(404).json({
+            success: false,
+            message: "No user data found",
+            error: {
+                code: 404,
+                description: "No user data found"
+            }
+        })
+    }
+}
+
 
 export const UserController = {
     createUser,
     getAllUsers,
+    getSingleUser,
 }
