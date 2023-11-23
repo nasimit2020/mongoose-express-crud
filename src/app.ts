@@ -16,8 +16,7 @@ app.use(cors());
 //    2. Retrieve all orders for a specific user                  GET            /api/users/:userId/orders
 //    3. Calculate Total Price of Orders for a Specific User      GET            /api/users/:userId/orders/total-price
 
-
-app.use('/api/users', UserRoutes)
+app.use('/api/users', UserRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
