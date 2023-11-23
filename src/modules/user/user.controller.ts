@@ -70,9 +70,7 @@ const getSingleUser = async (req: Request, res: Response) => {
 const updateUserInfo = async (req: Request, res: Response) => {
     try {
         const { users } = req.body;
-
         const { userId } = req.params;
-
         if (users.userId === Number(userId)) {
             const result = await userServices.updateUserToDB(Number(userId), users)
             res.status(200).json({
@@ -88,21 +86,18 @@ const updateUserInfo = async (req: Request, res: Response) => {
             message: "User Id does not match",
             error: error
         })
-
     }
-    // console.log(req.params);
-    // console.log(req.body);
-
 }
+
 
 const deleteSingleUser = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params;
-        const result = await userServices.deleteUserFromDB(Number(userId))
+        await userServices.deleteUserFromDB(Number(userId))
         res.status(200).json({
             success: true,
             message: "User deleted successfully!",
-            data: result
+            data: null
         })
 
     } catch (error) {
@@ -118,10 +113,31 @@ const deleteSingleUser = async (req: Request, res: Response) => {
 }
 
 
+const createAnOrder = async (req: Request, res: Response) => {
+    try {
+        const { order } = req.body;
+        const { userId } = req.params;
+        const result = await userServices.addOrdersToUser(Number(userId), order)
+        res.status(200).json({
+            success: true,
+            message: "Order add successfully!",
+            data: result
+        });
+    } catch (error) {
+        res.status(404).json({
+            success: false,
+            message: "Order failed",
+            error: error
+        })
+    }
+}
+
+
 export const UserController = {
     createUser,
     getAllUsers,
     getSingleUser,
     updateUserInfo,
-    deleteSingleUser
+    deleteSingleUser,
+    createAnOrder
 }

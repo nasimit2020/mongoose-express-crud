@@ -12,9 +12,7 @@ app.use(cors());
 // 3. Retrieve a specific user by ID                              GET            /api/users/:userId
 // 4. Update user information                                     PUT            /api/users/:userId
 // 5. Delete a user                                               DELETE         /api/users/:userId
-//    1. Add New Product in Order                                 PUT            /api/users/:userId/orders
-//    2. Retrieve all orders for a specific user                  GET            /api/users/:userId/orders
-//    3. Calculate Total Price of Orders for a Specific User      GET            /api/users/:userId/orders/total-price
+
 
 app.use('/api/users', UserRoutes);
 
