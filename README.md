@@ -4,8 +4,7 @@
 
 ## -running port is 5000;
 
-<a href="http://localhost:5000/api/users" target="_blank">Create an User</a>
-
+Create an User: "[http://localhost:5000/api/users]"
 
 Get all Users: "[http://localhost:5000/api/users]"
 
