@@ -28,15 +28,15 @@ export const userOrderSchema = new Schema<TOrder>({
 
 const userSchema = new Schema<TUser, UserModel>({
   userId: { type: Number, required: true, unique: true },
-  userName: { type: String, required: true, unique: true },
+  username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   fullName: { type: userNameSchema, required: true },
   age: { type: Number, required: true },
   email: { type: String, required: true },
-  isActive: { type: Boolean, default: true },
+  isActive: { type: Boolean, required: true, default: true },
   hobbies: [{ type: String, required: true }],
   address: { type: userAddressSchema, required: true },
-  orders: [{ type: userOrderSchema }],
+  orders: [{ type: userOrderSchema, default: undefined }],
 });
 
 userSchema.pre('save', async function (next) {

@@ -24,7 +24,8 @@ const updateUserToDB = async (userId: number, user: TUser) => {
   const findData = await User.isUserExists(userId);
   if (findData) {
     const updatedUser = await User.updateOne({ userId }, user);
-    return updatedUser;
+    const afterUpdateUserData = await User.findOne({ userId });
+    return { updatedUser, afterUpdateUserData };
   }
 };
 
@@ -39,9 +40,14 @@ const deleteUserFromDB = async (userId: number) => {
 };
 
 const addOrdersToUserDB = async (userId: number, order: TOrder) => {
-  // I can't complete the assignment requirement. Please give me the full answer
-  const result = await User.updateOne({ userId }, { $push: { orders: order } });
-  return result;
+  const findData = await User.isUserExists(userId);
+  if (findData) {
+    const result = await User.updateOne(
+      { userId },
+      { $push: { orders: order } },
+    );
+    return result;
+  }
 };
 
 const getAllOrdersFromUserDB = async (userId: number) => {

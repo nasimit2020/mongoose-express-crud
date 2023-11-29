@@ -22,7 +22,7 @@ const userValidationSchema = z.object({
     .number()
     .int()
     .positive({ message: 'User ID must be a positive number' }),
-  userName: z.string().min(1, { message: 'User name is required' }),
+  username: z.string().min(1, { message: 'User name is required' }),
   password: z.string().min(1, { message: 'Password is required' }),
   fullName: userNameValidationSchema,
   age: z.number().int().positive({ message: 'Age must be a positive number' }),
